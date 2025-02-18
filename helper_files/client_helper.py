@@ -190,12 +190,12 @@ def get_latest_price(ticker):
           multisymbol_request_params
       )
       if isinstance(symbol, list):
-          return [latest_multisymbol_quotes[s].ask_price for s in symbol]
+         return [latest_multisymbol_quotes[s].ask_price for s in symbol]
 
       x = latest_multisymbol_quotes[symbol].ask_price
       if x is not None and x > 0:
-          return x
-  if x < 1 or x is None:
+      return x
+   if x < 1 or x is None:
       x = yf.Ticker(symbol).info.get("currentPrice")
   return x
 
