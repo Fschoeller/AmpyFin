@@ -194,7 +194,7 @@ def get_latest_price(ticker):
 
       x = latest_multisymbol_quotes[symbol].ask_price
       if x is not None and x > 0:
-      return x
+         return x
    if x < 1 or x is None:
       x = yf.Ticker(symbol).info.get("currentPrice")
   return x
