@@ -193,8 +193,11 @@ def get_latest_price(ticker):
    if x < 1 or x is None:
       try:  
          ticker_yahoo = yf.Ticker(ticker)  
-         data = ticker_yahoo.history() 
-         return round(data['Close'].iloc[-1], 2)  
+         x = ticker_yahoo.info.get("currentPrice")
+         if x is None:
+            data = ticker_yahoo.history()
+            x = round(data['Close'].iloc[-1], 2)  
+         return x
       except Exception as e:  
          logging.error(f"Error fetching latest price for {ticker}: {e}")  
          return None
