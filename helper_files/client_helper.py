@@ -187,11 +187,11 @@ def get_latest_price(ticker):
    for i in range(5):
       request = StockLatestQuoteRequest(symbol_or_symbols=ticker)
       reponse = data_client.get_stock_latest_quote(request)
-      x = reponse[symbol].ask_price
+      x = reponse[ticker].ask_price
       if x is not None and x > 0:
          return x
    if x < 1 or x is None:
-      x = yf.Ticker(symbol).info.get("currentPrice")
+      x = yf.Ticker(ticker).info.get("currentPrice")
    return x
 
    
