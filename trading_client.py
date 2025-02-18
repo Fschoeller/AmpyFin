@@ -235,7 +235,7 @@ def main():
             portfolio_collection.update_one({"name" : "portfolio_percentage"}, {"$set": {"portfolio_value": (portfolio_value-50491.13)/50491.13}})
             if qqq_latest is not None:
                 portfolio_collection.update_one({"name" : "ndaq_percentage"}, {"$set": {"portfolio_value": (qqq_latest-518.58)/518.58}})
-            if spy_latest if not None:
+            if spy_latest is not None:
                 portfolio_collection.update_one({"name" : "spy_percentage"}, {"$set": {"portfolio_value": (spy_latest-591.95)/591.95}})
 
             threads = []
