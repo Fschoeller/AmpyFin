@@ -191,18 +191,15 @@ def get_latest_price(ticker):
       if x is not None and x > 0:
          return x
    if x < 1 or x is None:
-      x = yf.Ticker(ticker).info.get("currentPrice")
-   return x
-
+      try:  
+         ticker_yahoo = yf.Ticker(ticker)  
+         data = ticker_yahoo.history() 
    
-   # try:  
-   #    ticker_yahoo = yf.Ticker(ticker)  
-   #    data = ticker_yahoo.history() 
+         return round(data['Close'].iloc[-1], 2)  
+      except Exception as e:  
+         logging.error(f"Error fetching latest price for {ticker}: {e}")  
+         return None
 
-   #    return round(data['Close'].iloc[-1], 2)  
-   # except Exception as e:  
-   #    logging.error(f"Error fetching latest price for {ticker}: {e}")  
-   #    return None
    
 
 def dynamic_period_selector(ticker):
