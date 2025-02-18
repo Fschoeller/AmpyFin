@@ -185,16 +185,9 @@ def get_latest_price(ticker):
    :return: The latest price of the stock  
    """  
    for i in range(5):
-      multisymbol_request_params = StockLatestQuoteRequest(
-          symbol_or_symbols=symbol
-      )
-      latest_multisymbol_quotes = self.data_client.get_stock_latest_quote(
-          multisymbol_request_params
-      )
-      if isinstance(symbol, list):
-         return [latest_multisymbol_quotes[s].ask_price for s in symbol]
-
-      x = latest_multisymbol_quotes[symbol].ask_price
+      request = StockLatestQuoteRequest(symbol_or_symbols=ticker)
+      reponse = data_client.get_stock_latest_quote(request)
+      x = reponse[symbol].ask_price
       if x is not None and x > 0:
          return x
    if x < 1 or x is None:
