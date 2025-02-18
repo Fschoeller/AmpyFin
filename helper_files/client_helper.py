@@ -19,6 +19,11 @@ import json
 import certifi
 from zoneinfo import ZoneInfo
 import time
+from notifiers import get_notifier
+from dotenv import load_dotenv
+import os
+load_dotenv('../.env')
+telegram = get_notifier('telegram')
 
 overlap_studies = [BBANDS_indicator, DEMA_indicator, EMA_indicator, HT_TRENDLINE_indicator, KAMA_indicator, MA_indicator, MAMA_indicator, MAVP_indicator, MIDPOINT_indicator, MIDPRICE_indicator, SAR_indicator, SAREXT_indicator, SMA_indicator, T3_indicator, TEMA_indicator, TRIMA_indicator, WMA_indicator]
 momentum_indicators = [ADX_indicator, ADXR_indicator, APO_indicator, AROON_indicator, AROONOSC_indicator, BOP_indicator, CCI_indicator, CMO_indicator, DX_indicator, MACD_indicator, MACDEXT_indicator, MACDFIX_indicator, MFI_indicator, MINUS_DI_indicator, MINUS_DM_indicator, MOM_indicator, PLUS_DI_indicator, PLUS_DM_indicator, PPO_indicator, ROC_indicator, ROCP_indicator, ROCR_indicator, ROCR100_indicator, RSI_indicator, STOCH_indicator, STOCHF_indicator, STOCHRSI_indicator, TRIX_indicator, ULTOSC_indicator, WILLR_indicator]
@@ -49,7 +54,8 @@ def place_order(trading_client, symbol, side, quantity, mongo_client):
     :param mongo_client: MongoDB client instance
     :return: Order result from Alpaca API
     """
-    
+    telegram.notify(message=f'{symbol}: {side}, {quantity}', token=os.getenv("TELEGRAM_TOKEN"), chat_id=os.getenv("TELEGRAM_CHAT_ID"))
+
     market_order_data = MarketOrderRequest(
         symbol=symbol,
         qty=quantity,
