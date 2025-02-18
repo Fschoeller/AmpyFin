@@ -273,7 +273,11 @@ def update_portfolio_values(client):
          # If the cache is empty, fetch the latest price from the Polygon API
          # Cache should be updated every 60 seconds 
          current_price = None
+         retry_cnt = 0
          while current_price is None:
+            retry_cnt += 1
+            if retry_cnt >= 5:
+                break
             try:
                # get latest price shouldn't cache - we should also do a delay
                current_price = get_latest_price(ticker)
