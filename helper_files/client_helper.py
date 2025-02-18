@@ -26,6 +26,8 @@ import time
 from notifiers import get_notifier
 from dotenv import load_dotenv
 import os
+from cachetools import cached, TTLCache
+
 
 load_dotenv('../.env')
 telegram = get_notifier('telegram')
@@ -177,6 +179,7 @@ def market_status(polygon_client):
         return "error"
 
 # Helper to get latest price
+@cached(cache=TTLCache(maxsize=1024, ttl=60))
 def get_latest_price(ticker):  
    """  
    Fetch the latest price for a given stock ticker using yfinance.  
