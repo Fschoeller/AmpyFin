@@ -2,7 +2,9 @@ from pymongo import MongoClient
 
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.trading.client import TradingClient
-from alpaca.trading.requests import MarketOrderRequest, StockLatestQuoteRequest
+from alpaca.trading.requests import MarketOrderRequest
+from alpaca.data.requests import StockBarsRequest, StockLatestQuoteRequest
+
 from alpaca.trading.enums import OrderSide, TimeInForce
 from datetime import datetime, timedelta, timezone
 import logging
