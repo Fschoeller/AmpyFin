@@ -197,7 +197,7 @@ def get_latest_price(ticker):
          return x
    if x < 1 or x is None:
       x = yf.Ticker(symbol).info.get("currentPrice")
-  return x
+   return x
 
    
    # try:  
