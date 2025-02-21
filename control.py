@@ -1,5 +1,6 @@
 # This file is simply to fine tune parameters and switch modes
 import sys
+
 # general parameters
 """
 time_delta_mode can be multiplicative, additive, or balanced. Additive results in less overfitting but could result in underfitting as time goes on
@@ -9,7 +10,7 @@ time_delta_increment is used for additive purpose
 time_delta_multiplicative is used for multiplicative purpose
 time_delta_balanced is used for balanced purpose - 0.2 means 0.8 is data influence and 0.2 is current influence. This is used by both ranking and training clients
 """
-time_delta_mode = 'balanced'
+time_delta_mode = "balanced"
 time_delta_increment = 0.01
 time_delta_multiplicative = 1.01
 time_delta_balanced = 0.2
@@ -38,7 +39,7 @@ There will be an option to:
 'push' means pushing your trained bot to the database. This is only available for the ranking client.
 The default for mode is live to protect against accidental training
 """
-mode = 'train'
+mode = "train"
 
 """
 training parameters - run purely on ranking_client.py
@@ -63,7 +64,7 @@ train_time_delta_balanced is used for balanced purpose - 0.1 means 0.9 is data i
 train time delta is the starting time delta for the training client
 """
 train_time_delta = sys.float_info.min
-train_time_delta_mode = 'balanced'
+train_time_delta_mode = "balanced"
 train_time_delta_increment = 0.01
 train_time_delta_multiplicative = 1.01
 train_time_delta_balanced = 0.2
@@ -90,7 +91,6 @@ The lower this number, the more diversification you will have in your portfolio.
 the less diversification you will have but it will be buying more selective assets.
 """
 train_trade_asset_limit = 0.1
-
 
 
 """
@@ -128,11 +128,11 @@ the price of the asset goes down but by less than 1% in the trade during sell,
 you should penalize the strategy by a multiple of time_delta * 1.  
 loss_price_delta_else is the penalty you should apply if the loss exceeds loss_price_change_ratio_d2.
 """
-train_loss_price_change_ratio_d1 = 0.975  
-train_loss_profit_time_d1 = 1   
-train_loss_price_change_ratio_d2 = 0.95  
-train_loss_profit_time_d2 = 1.5  
-train_loss_profit_time_else = 2  
+train_loss_price_change_ratio_d1 = 0.975
+train_loss_profit_time_d1 = 1
+train_loss_price_change_ratio_d2 = 0.95
+train_loss_profit_time_d2 = 1.5
+train_loss_profit_time_else = 2
 
 """
 train_stop_loss - the percentage of loss you are willing to take before you sell your asset
@@ -142,7 +142,6 @@ train_stop_loss = 0.03
 train_take_profit = 0.05
 
 # ranking_client.py parameters
-
 
 
 """
@@ -180,13 +179,11 @@ the price of the asset goes down but by less than 1% in the trade during sell,
 you should penalize the strategy by a multiple of time_delta * 1.  
 loss_price_delta_else is the penalty you should apply if the loss exceeds loss_price_change_ratio_d2.
 """
-loss_price_change_ratio_d1 = 0.975  
-loss_profit_time_d1 = 1   
-loss_price_change_ratio_d2 = 0.95  
-loss_profit_time_d2 = 1.5  
-loss_profit_time_else = 2  
-
-
+loss_price_change_ratio_d1 = 0.975
+loss_profit_time_d1 = 1
+loss_price_change_ratio_d2 = 0.95
+loss_profit_time_d2 = 1.5
+loss_profit_time_else = 2
 
 
 # trading_client.py parameters
@@ -195,7 +192,7 @@ trade_liquidity_limit is the amount of money you are telling the bot to reserve 
 All bots start with a default of 50000. This is for the trading client. Please try not to change this.
 If you do, the suggestion for bottom limit is 20% of the portfolio value. 
 """
-trade_liquidity_limit = 15000
+trade_liquidity_limit = 500
 
 """
 trade_asset_limit to portfolio is how much asset you are allowed to hold in comparison to portfolio value for the trading client
