@@ -342,11 +342,6 @@ def place_order(trading_client, symbol, side, quantity, mongo_client):
     :param mongo_client: MongoDB client instance
     :return: Order result from Alpaca API
     """
-    telegram.notify(
-        message=f"{symbol}: {side}, {quantity}",
-        token=os.getenv("TELEGRAM_TOKEN"),
-        chat_id=os.getenv("TELEGRAM_CHAT_ID"),
-    )
 
     market_order_data = MarketOrderRequest(
         symbol=symbol, qty=quantity, side=side, time_in_force=TimeInForce.DAY
