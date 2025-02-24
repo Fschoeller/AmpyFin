@@ -276,8 +276,8 @@ def main():
                     """
                     This is here so order will propage through and we will have an accurate cash balance recorded
                     """
-                except:
-                    print("Error occurred while executing buy order. Continuing...")
+                except Exception as e:
+                    logging.warning(f"Error buying {ticker}, {e}")
                     break
             buy_heap = []
             suggestion_heap = []
