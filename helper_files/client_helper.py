@@ -485,12 +485,16 @@ def get_latest_price(ticker):
     :param ticker: The stock ticker symbol
     :return: The latest price of the stock
     """
+    x = None
     for i in range(5):
-        request = StockLatestQuoteRequest(symbol_or_symbols=ticker)
-        reponse = data_client.get_stock_latest_quote(request)
-        x = reponse[ticker].ask_price
-        if x is not None and x > 0:
-            return x
+        try:
+            request = StockLatestQuoteRequest(symbol_or_symbols=ticker)
+            reponse = data_client.get_stock_latest_quote(request)
+            x = reponse[ticker].ask_price
+            if x is not None and x > 0:
+                return x
+        except:
+            time.sleep(1)
     if x < 1 or x is None:
         try:
             ticker_yahoo = yf.Ticker(ticker)
